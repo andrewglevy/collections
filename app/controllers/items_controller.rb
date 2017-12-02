@@ -54,9 +54,10 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    @collection = @item.collection
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to collection_path(@collection), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
