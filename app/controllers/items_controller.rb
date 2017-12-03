@@ -25,13 +25,14 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    @collection = @item.collection
 
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item.collection, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
-        format.html { render :new }
+        format.html { render 'collections/show' }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
